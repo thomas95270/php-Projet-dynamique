@@ -1,11 +1,11 @@
 <?php
 session_start();
-include('../assets/inc/head.php');
+include('assets/inc/head.php');
 ?>
     <title>Agence</title>
     
     <?php
-include('../assets/inc/header.php');
+include('assets/inc/header.php');
 ?>
 
 <?php
@@ -44,9 +44,9 @@ $resultat=$requete->fetch(PDO::FETCH_ASSOC);
 </table>
 <div id="confirmation">
 <p>Etes-vous sûr de vouloir effacer cette agence ? </p>    
-    <p><a href="delete_gestion_agences.php?id_agence=<?php echo $id_agence ?>">oui</a></p>
-    <p><a href="../gestion_agences.php">non</a></p>
+    <p><a href="agence_delete.php?id_agence=<?php echo $id_agence ?>">oui</a></p>
+    <p><a href="agences.php">non</a></p>
 </div>
 <?php
-include('../assets/inc/footer.php');
+include('assets/inc/footer.php');
 ?>

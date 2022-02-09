@@ -6,5 +6,5 @@ $requete = $bdd->prepare($sql);
 $requete->bindValue(':id_agence', $id_agence, PDO::PARAM_INT);
 $requete->execute();
 
-header('Location: ../gestion_agences.php');
+header('Location: agences.php');
 ?>

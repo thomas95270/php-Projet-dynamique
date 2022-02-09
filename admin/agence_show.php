@@ -1,11 +1,11 @@
 <?php
 session_start();
-include('../assets/inc/head.php');
+include('assets/inc/head.php');
 ?>
     <title>Agence</title>
     
     <?php
-include('../assets/inc/header.php');
+include('assets/inc/header.php');
 ?>
 
 <?php
@@ -42,6 +42,6 @@ $resultat=$requete->fetch(PDO::FETCH_ASSOC);
         </tr>
     </tbody>
 </table>
-<p><a href="../gestion_agences.php">Retour</a></p>
+<p><a href="agences.php">Retour</a></p>
 </body>
 </html>

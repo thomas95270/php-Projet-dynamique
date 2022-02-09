@@ -14,10 +14,12 @@ include('assets/inc/header.php');
     $requete->bindValue(':id_vehicule', $_GET['id_vehicule'], PDO::PARAM_INT);
     $requete->execute();
     $resultat=$requete->fetch(PDO::FETCH_ASSOC);
+    var_dump($resultat);
     ?>
-
     <h2>Modifier le vehicule</h2>
     <form action="vehicule_update.php" method="post">
+
+        <input type="number" name="fk_agence" class="display-none" value="<?php echo $resultat['fk_agence']?>">
         <input type="number" name="id_vehicule" class="display-none" value="<?php echo $resultat['id_vehicule']?>">
         <div class="titre">
             <label for="titre">Titre</label>
@@ -25,7 +27,7 @@ include('assets/inc/header.php');
         </div>
         <div class="marque">
             <label for="marque">Marque</label>
-            <input type="marque" name="marque" id="marque" placeholder="Marque" <?php echo $resultat['marque']?>>
+            <input type="marque" name="marque" id="marque" placeholder="Marque" value="<?php echo $resultat['marque']?>">
         </div>
         <div class="modele">
             <label for="modele">Modele</label>
