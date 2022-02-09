@@ -1,11 +1,11 @@
 <?php
 session_start();
-include('../../inc/head.php');
+include('assets/inc/head.php');
 ?>
     <title>Modifer des membres</title>
     
     <?php
-include('../../inc/header.php');
+include('assets/inc/header.php');
 ?>
 
 <main>
@@ -66,6 +66,6 @@ include('../../inc/header.php');
     </style>
 
     <?php
-    include('../../inc/footer.php');
+    include('assets/inc/footer.php');
     ?>
     

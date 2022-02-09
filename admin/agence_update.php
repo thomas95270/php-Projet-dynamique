@@ -27,5 +27,5 @@ $requete->bindValue(':description', $description, PDO::PARAM_STR);
 $requete->bindValue(':photo', $photo, PDO::PARAM_STR);
 $requete->execute();
 
-header('Location: ../gestion_agences.php');
+header('Location: agences.php');
 ?>

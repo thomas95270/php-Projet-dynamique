@@ -44,9 +44,9 @@ $resultat=$requete->fetchAll(PDO::FETCH_ASSOC);
                         . "<td>" .$agence['cp']. "</td>"
                         . "<td>" .$agence['description']. "</td>"
                         . "<td><img src=" .$agence['photo']. "></td>"
-                        ."<td><a href='core/show_gestion_agences.php?id_agence=".$agence['id_agence']."'>Visualiser</a> 
-                        <a href='core/update_gestion_agences_form.php?id_agence=".$agence['id_agence']."'>Modifier</a> 
-                        <a href='core/delete_confirm_gestion_agences.php?id_agence=".$agence['id_agence']."'>Effacer</a>
+                        ."<td><a href='agence_show.php?id_agence=".$agence['id_agence']."'>Visualiser</a> 
+                        <a href='agence_update_form.php?id_agence=".$agence['id_agence']."'>Modifier</a> 
+                        <a href='agence_delete_confirm.php?id_agence=".$agence['id_agence']."'>Effacer</a>
                         </tr>";
                     }
                 ?>
@@ -54,7 +54,7 @@ $resultat=$requete->fetchAll(PDO::FETCH_ASSOC);
         </table>
         
 <!------------FORMULAIRE D'AJOUT DES AGENCES --------------->
-        <form action="core/ajout_gestion_agences.php" method="POST">
+        <form action="agence_ajout.php" method="POST">
             <div class="titre">
                 <label for="titre">Titre</label>
                 <input type="text" name="titre" id="titre" placeholder="Titre">
