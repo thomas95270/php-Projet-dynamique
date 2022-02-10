@@ -1,42 +1,46 @@
 </head>
 <body>
     <header>
-<nav>
-<nav class="navbar navbar-light bg-light fixed-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Offcanvas navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="connect.php">Se connecter</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="inscription_form.php">S'inscrire</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.php">Nous contacter</a>
-          </li>
-            </ul>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</nav>
-</nav>
+      <nav class="navbar navbar-light fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand"></a>
+          <button class="bg-light navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-body">
+                  <ul class="navbar-nav justify-content-end flex-grow-1 pe-1">
+                    <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="connect.php">Se connecter</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="inscription_form.php">S'inscrire</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="contact.php">Nous contacter</a>
+                    </li>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <!---------------------------------nav-bar fin---------------------------------------->
-        </div>
-    </header>
+            </div>
+          </div>
+        </nav>
+        
+        <div id="filtres">
+              <div class="agence text-white">
+                Adresse de départ <br>
+                
+              </div>
+              <div class="date_debut text-white">
+                debut de location <br>
+              </div>
+              <div class="date_fin text-white">
+                Fin de location <br>
+              </div>
+              <div class="valider text-white ">
+                Valider un véhicule
+              </div>
+            </div>
+        
+      </header>

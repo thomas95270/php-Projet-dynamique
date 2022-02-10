@@ -16,19 +16,21 @@ $requete->execute();
 $resultat=$requete->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!------------menu deroulant agence--------------->
-<div class="agence">
+<form action="vehicules.php" method='POST'>
     <label for="agence">Agence</label>
-    <select name="agence" id="id_agence">
+    <select name="agence" id="id_agence" onChange="submit()">
+        <option name="id_agence">Choisissez une agence</option>';
         <?php
         foreach($resultat as $agence){
             echo '<option name="id_agence" value="'.$agence['id_agence'].'">'.$agence['titre'].'</option>';
         }
+        
         ?>
-        <?php
-        var_dump($id_agence);
-        ?>
+        <option name="id_agence" value="0">Toutes les agences</option>';
     </select>
-</div>
+</form>
+<?php
+?>
 <!-- ----------------------------TABLE--------------->
 <table>
     <thead>
@@ -48,15 +50,18 @@ $resultat=$requete->fetchAll(PDO::FETCH_ASSOC);
     <tbody>
         <?php
             $bdd2 = new PDO('mysql:host=localhost;dbname=veville', 'root', '');
-            $sql2 = "SELECT * FROM vehicule;";
+            $sql2 = "SELECT vehicule.id_vehicule, vehicule.fk_agence, vehicule.titre, vehicule.marque, vehicule.modele, vehicule.description, vehicule.photo, vehicule.prix_journalier, agence.titre AS titreAgence FROM vehicule
+            LEFT JOIN agence
+            ON agence.id_agence = vehicule.fk_agence;";
             $requete2 = $bdd2->prepare($sql2);
             $requete2->execute();
             $resultat2 = $requete2->fetchAll(PDO::FETCH_ASSOC);
-
-            foreach($resultat2 as $vehicule){
+            
+            if($_POST['agence']==0){
+                foreach($resultat2 as $vehicule){
                 echo "<tr>
                 <td>" .$vehicule['id_vehicule']. "</td>"
-                ."<td>" .$agence['titre']. "</td>"
+                ."<td>" .$vehicule['titreAgence']. "</td>"
                 ."<td>" .$vehicule['titre']. "</td>"
                 . "<td>" .$vehicule['marque']. "</td>"
                 . "<td>" .$vehicule['modele']. "</td>"
@@ -67,8 +72,27 @@ $resultat=$requete->fetchAll(PDO::FETCH_ASSOC);
                 <a href='vehicule_update_form.php?id_vehicule=".$vehicule['id_vehicule']."'>Modifier</a> 
                 <a href='vehicule_delete_confirm.php?id_vehicule=".$vehicule['id_vehicule']."'>Effacer</a>
                 </tr>";
+                }
+            }else{
+                foreach($resultat2 as $vehicule){
+                    if($_POST['agence']==$vehicule['fk_agence']){
+                    echo "<tr>
+                    <td>" .$vehicule['id_vehicule']. "</td>"
+                    ."<td>" .$vehicule['titreAgence']. "</td>"
+                    ."<td>" .$vehicule['titre']. "</td>"
+                    . "<td>" .$vehicule['marque']. "</td>"
+                    . "<td>" .$vehicule['modele']. "</td>"
+                    . "<td>" .$vehicule['description']. "</td>"
+                    . "<td>" .$vehicule['photo']. "</td>"
+                    . "<td>" .$vehicule['prix_journalier']. "</td>"
+                    ."<td><a href='vehicule_show.php?id_vehicule=".$vehicule['id_vehicule']."'>Visualiser</a> 
+                    <a href='vehicule_update_form.php?id_vehicule=".$vehicule['id_vehicule']."'>Modifier</a> 
+                    <a href='vehicule_delete_confirm.php?id_vehicule=".$vehicule['id_vehicule']."'>Effacer</a>
+                    </tr>";
+                    }
+                }
             }
-    ?>
+        ?>
 
 </tbody>
 </table>
@@ -107,11 +131,11 @@ $resultat=$requete->fetchAll(PDO::FETCH_ASSOC);
             display: none;
         }
         </style>
-<!-- -------------------------FOOTER -------------------------->
-<?php
-    include('assets/inc/footer.php');
-    ?>
+        <footer>
+            ceci est le footer
+            </footer>
+        </body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-    <script rel="assets/js/select.js"></script>
+        <script src="assets/js/select.js"></script>
+        
 </html>

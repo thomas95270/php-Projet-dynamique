@@ -12,8 +12,18 @@ include('assets/inc/header.php');
 include('assets/core/connexion.php');
 ?>
 <article>
-
-  <!-----------------------------car-list------------------------------------->
+<!-- --------------------------------------------APPEL BDD----------------------------- -->
+<?php
+$bdd = new PDO('mysql:host=localhost;dbname=veville', 'root','');
+$sql = "SELECT vehicule.photo, vehicule.titre, vehicule.description, vehicule.prix_journalier, agence.titre AS titreAgence
+        FROM vehicule
+        LEFT JOIN agence
+        ON agence.id_agence = vehicule.fk_agence";
+$requete = $bdd->prepare($sql);
+$requete->execute();
+$resultat = $requete->fetchALL(PDO::FETCH_ASSOC);
+?>
+  <!-- ---------------------------LISTE DE VOITURES----------------------------------- -->
   <?php
   foreach($resultat as $vehicule){
     echo  '
@@ -41,24 +51,12 @@ include('assets/core/connexion.php');
   }
   ?>
 </article>
-
-
 </main>
 
-  <!------------------------------footer-------------------------------------->
-  <footer>
-    <p class="copy">Cars-location</p>
-  </footer>
-  <!------------------------------footer-------------------------------------->
-
-
-
-
-
-
-  <!------------------------Script---------------------------------->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  <script src="src/js/main.js"></script>
+<!------------------------------footer-------------------------------------->
+<?php
+ include('assets/inc/footer.php');
+?>
 </body>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </html>

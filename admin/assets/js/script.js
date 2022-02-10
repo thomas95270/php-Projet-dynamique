@@ -1,4 +1,5 @@
 "use strict";
+console.loc("tortue");
 // dashboard, evenement boutons=renoie vers pages
 let gestion_membres = document.querySelector("#gestion_membres");
 let gestion_vehicules = document.querySelector("#gestion_vehicules");
@@ -13,4 +14,3 @@ gestion_vehicules.addEventListener("click", function () {
 gestion_agences.addEventListener("click", function () {
 	document.location.href = "agences.php";
 });
-
