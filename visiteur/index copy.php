@@ -8,14 +8,7 @@ include('assets/inc/head.php');
 include('assets/inc/header.php');
 ?>
 <main>
-  <?php
-  // echo '<pre>';
-  // var_dump($_POST);
-  // echo '</pre>';
-  // echo '<pre>';
-  // var_dump($_SESSION);
-  // echo '</pre>';
-  ?>
+
 <article>
   <!-- --------------------------------------------APPEL BDD----------------------------- -->
   <?php
@@ -28,8 +21,10 @@ include('assets/inc/header.php');
         LEFT JOIN agence
         ON agence.id_agence = vehicule.fk_agence
         ORDER BY prix_journalier ASC";
-    /* ****************************** Affichage des vehicules prix décroissant*********************** */
-  } else if($_POST['filtre_prix'] == 2){
+
+        
+        /* ****************************** Affichage des vehicules prix décroissant*********************** */
+    } else if($_POST['filtre_prix'] == 2){
     $sql = "SELECT vehicule.id_vehicule, vehicule.fk_agence, vehicule.photo, vehicule.titre, vehicule.description, vehicule.prix_journalier, agence.titre AS titreAgence
     FROM vehicule
     LEFT JOIN agence
@@ -73,7 +68,7 @@ $resultat = $requete->fetchALL(PDO::FETCH_ASSOC);
   <!-- ---------------------------LISTE DE VOITURES----------------------------------- -->
   <?php
       foreach($resultat as $vehicule){
-        if(isset($_SESSION['id_agence']) && $_SESSION['agence']==$vehicule['titreAgence']){
+        if(isset($_POST))
       echo  '
         <form action="commande_form.php" method="post">
           <div class="container mt-5">
@@ -103,38 +98,7 @@ $resultat = $requete->fetchALL(PDO::FETCH_ASSOC);
           <input type="text" name="titre" value="'.$vehicule['titre'].'" class="display-none">
           <input type="text" name="titreAgence" value="'.$vehicule['titreAgence'].'" class="display-none">
           </form>';
-    } else if ((isset($_SESSION['id_agence'])) && $_SESSION['id_agence']==0){
-    echo  '
-      <form action="commande_form.php" method="post">
-        <div class="container mt-5">
-          <div class="col-12">
-            <div class="list-car">
-              <div class="card mb-5" style="max-width: 950px;">
-                <div class="row g-0">
-                  <div class="col-md-4">
-                  <img src="assets/img/'.$vehicule['photo'].'" class="img-fluid rounded-start" alt="...">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">'.$vehicule['titre'].'</h5>
-                      <p class="card-text">'.$vehicule['description'].'</p>
-                      <p class="card-text">' .$vehicule['prix_journalier'].'€ - '.$vehicule['titreAgence'].'</p>
-                      <button type="submit" class="btn btn-success" id="btn_reserver">Reservez et Payer</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <input type="number" name="id_vehicule" value="'.$vehicule['id_vehicule'].'" class="display-none">
-        <input type="number" name="prix_journalier" value="'.$vehicule['prix_journalier'].'" class="display-none">
-        <input type="number" name="fk_agence" value="'.$vehicule['fk_agence'].'" class="display-none">
-        <input type="text" name="titre" value="'.$vehicule['titre'].'" class="display-none">
-        <input type="text" name="titreAgence" value="'.$vehicule['titreAgence'].'" class="display-none">
-        </form>';
     }
-  }
   ?>
 
 </article>
