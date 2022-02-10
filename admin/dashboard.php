@@ -3,23 +3,11 @@ session_start();
 include('assets/inc/head.php');
 ?>
   <title>Veveille - CarShopt</title>
-
 <?php
 include('assets/inc/header.php');
 ?>
 <main>
- <h2>Bienvenue</h2>
- <h3>vous êtes dans le</h3>
-<h1>Tableau de bord</h1>
-
-<h3>Gestions des membres</h3>
-<input type="button" id="gestion_membres" value="gérer les membres">
-<h3>Gestions des véhicules</h3>
-<input type="button" id="gestion_vehicules" value="gérer les vehicules">
-<h3>Gestions des agences</h3>
-<input type="button" id="gestion_agences" value="gérer les agences">
-
-
+ <h1>Bienvenue dans le tableau de bord</h1>
 </main>
 
   <!------------------------------footer-------------------------------------->

@@ -10,12 +10,22 @@
             <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-body">
                   <ul class="navbar-nav justify-content-end flex-grow-1 pe-1">
-                    <li class="nav-item">
+                    <?php if($_SESSION['statut'] ==0){ 
+                      echo '<li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="compte.php">Mon compte</a>
+                      </li>';
+                      echo '<li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="assets/core/deconnexion.php">Se déconnecter</a>
+                      </li>';
+                    }else{echo
+                      '<li class="nav-item">
                       <a class="nav-link" aria-current="page" href="connect.php">Se connecter</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="inscription_form.php">S'inscrire</a>
-                    </li>
+                      </li>
+                      <li class="nav-item">
+                      <a class="nav-link" href="inscription_form.php">S\'inscrire</a>
+                      </li>';
+                    }
+                    ?>
                     <li class="nav-item">
                       <a class="nav-link" href="contact.php">Nous contacter</a>
                     </li>
