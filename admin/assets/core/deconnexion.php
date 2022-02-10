@@ -1,5 +1,5 @@
 <?php
 session_start();
 $_SESSION['statut']=-1;
-header('Location: ../../index.php');
+header('Location: ../../../visiteur/index.php');
 ?>

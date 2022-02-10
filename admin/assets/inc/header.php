@@ -15,7 +15,7 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="../deconnexion.php">Se déconnecter</a>
+                  <a class="nav-link active" aria-current="page" href="assets/core/deconnexion.php">Se déconnecter</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="membres.php">Gérer les membres</a>

@@ -5,7 +5,7 @@ $mdp=$_POST['password'];
 $statut=-1;
 $_SESSION['statut']=$statut;
 $bdd = new PDO('mysql:host=localhost;dbname=veville', 'root','');
-$sql = "SELECT pseudo, mdp, statut FROM membre;";
+$sql = "SELECT * FROM membre;";
 $requete = $bdd->prepare($sql);
 $requete->execute();
 $resultat = $requete->fetchALL(PDO::FETCH_ASSOC);
@@ -20,9 +20,13 @@ foreach($resultat as $test){
     }
     if($statut == 0){
         echo "je suis membre";
-        var_dump($_POST['statut']);
-        $_SESSION['statut']=$statut;
-        header('Location: ../../../visiteur/index.php');
+        $_SESSION['id_membre']=$test['id_membre'];
+        $_SESSION['pseudo']=$test['pseudo'];
+        $_SESSION['civilite']=$test['civilite'];
+        $_SESSION['nom']=$test['nom'];
+        $_SESSION['prenom']=$test['prenom'];
+        $_SESSION['email']=$test['email'];
+        header('Location: ../../../visiteur/mon_compte.php');
     }
     
     if($statut == 1){
