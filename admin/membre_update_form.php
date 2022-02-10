@@ -27,7 +27,7 @@ include('assets/inc/header.php');
         </div>
         <div class="password">
             <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password" placeholder="Mot de passe">
+            <input type="password" name="password" id="password" placeholder="Mot de passe" value="<?php echo $resultat['mdp']?>>
         </div>
         <div class="nom">
             <label for="nom">Nom</label>

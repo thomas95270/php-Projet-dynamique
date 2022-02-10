@@ -1,6 +1,6 @@
 <?php
- $extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
 
+$extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
 $bdd = new PDO('mysql:host=localhost;dbname=veville', 'root','');
 
 $sql = "INSERT INTO agence (titre, adresse, ville, cp, description, photo)

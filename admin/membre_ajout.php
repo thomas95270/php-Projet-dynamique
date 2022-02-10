@@ -22,5 +22,5 @@ $requete->bindValue(':date_enregistrement', $date, PDO::PARAM_STR);
 $requete->execute();
 
 /*redirection vers la page*/
-header('Location: ../../../membres.php');
+header('Location: membres.php');
 ?>

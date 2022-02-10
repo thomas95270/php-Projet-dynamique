@@ -2,7 +2,7 @@
 session_start();
 include('assets/inc/head.php');
 ?>
-  <title>Veveille - CarShopt</title>
+  <title>Veveille - CarShop</title>
 <?php
 include('assets/inc/header.php');
 ?>

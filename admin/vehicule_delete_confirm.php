@@ -39,7 +39,7 @@ $resultat=$requete->fetch(PDO::FETCH_ASSOC);
         <td><?php echo $resultat['marque']?></td>
         <td><?php echo $resultat['modele']?></td>
         <td><?php echo $resultat['description']?></td>
-        <td><?php echo $resultat['photo']?></td>
+        <?php echo "<td><img width='50vw' src='assets/img/". $resultat['photo']."'></td>"?>
         <td><?php echo $resultat['prix_journalier']?></td>
     </tr>
     </tbody>

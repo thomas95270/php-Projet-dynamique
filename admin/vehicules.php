@@ -7,6 +7,7 @@ include('assets/inc/head.php');
 include('assets/inc/header.php');
 ?>
 <main>
+    <h1>Gestion des véhicules</h1>
 <?php
 //**************Connexion + RECUPERATION DES DONNEES***************/
 $bdd = new PDO('mysql:host=localhost;dbname=veville', 'root', '');
@@ -32,6 +33,7 @@ $resultat=$requete->fetchAll(PDO::FETCH_ASSOC);
 <?php
 ?>
 <!-- ----------------------------TABLE--------------->
+
 <table>
     <thead>
         <tr>
@@ -56,47 +58,51 @@ $resultat=$requete->fetchAll(PDO::FETCH_ASSOC);
             $requete2 = $bdd2->prepare($sql2);
             $requete2->execute();
             $resultat2 = $requete2->fetchAll(PDO::FETCH_ASSOC);
+
             
-            if($_POST['agence']==0){
-                foreach($resultat2 as $vehicule){
-                echo "<tr>
-                <td>" .$vehicule['id_vehicule']. "</td>"
-                ."<td>" .$vehicule['titreAgence']. "</td>"
-                ."<td>" .$vehicule['titre']. "</td>"
-                . "<td>" .$vehicule['marque']. "</td>"
-                . "<td>" .$vehicule['modele']. "</td>"
-                . "<td>" .$vehicule['description']. "</td>"
-                . "<td>" .$vehicule['photo']. "</td>"
-                . "<td>" .$vehicule['prix_journalier']. "</td>"
-                ."<td><a href='vehicule_show.php?id_vehicule=".$vehicule['id_vehicule']."'>Visualiser</a> 
-                <a href='vehicule_update_form.php?id_vehicule=".$vehicule['id_vehicule']."'>Modifier</a> 
-                <a href='vehicule_delete_confirm.php?id_vehicule=".$vehicule['id_vehicule']."'>Effacer</a>
-                </tr>";
-                }
-            }else{
-                foreach($resultat2 as $vehicule){
-                    if($_POST['agence']==$vehicule['fk_agence']){
-                    echo "<tr>
-                    <td>" .$vehicule['id_vehicule']. "</td>"
-                    ."<td>" .$vehicule['titreAgence']. "</td>"
-                    ."<td>" .$vehicule['titre']. "</td>"
-                    . "<td>" .$vehicule['marque']. "</td>"
-                    . "<td>" .$vehicule['modele']. "</td>"
-                    . "<td>" .$vehicule['description']. "</td>"
-                    . "<td>" .$vehicule['photo']. "</td>"
-                    . "<td>" .$vehicule['prix_journalier']. "</td>"
-                    ."<td><a href='vehicule_show.php?id_vehicule=".$vehicule['id_vehicule']."'>Visualiser</a> 
-                    <a href='vehicule_update_form.php?id_vehicule=".$vehicule['id_vehicule']."'>Modifier</a> 
-                    <a href='vehicule_delete_confirm.php?id_vehicule=".$vehicule['id_vehicule']."'>Effacer</a>
-                    </tr>";
+/************************************  Filtre toutes les agences**********************/
+                if((isset($_POST['agence']) && $_POST['agence']==0) || (!isset($_POST['agence']))){
+                    foreach($resultat2 as $vehicule){
+                        echo "<tr>
+                        <td>" .$vehicule['id_vehicule']. "</td>"
+                        ."<td>" .$vehicule['titreAgence']. "</td>"
+                        ."<td>" .$vehicule['titre']. "</td>"
+                        . "<td>" .$vehicule['marque']. "</td>"
+                        . "<td>" .$vehicule['modele']. "</td>"
+                        . "<td>" .$vehicule['description']. "</td>"
+                        . "<td><img width='50vw' src='assets/img/" .$vehicule['photo']. "'</td>"
+                        . "<td>" .$vehicule['prix_journalier']. "</td>"
+                        ."<td><a href='vehicule_show.php?id_vehicule=".$vehicule['id_vehicule']."'>Visualiser</a> 
+                        <a href='vehicule_update_form.php?id_vehicule=".$vehicule['id_vehicule']."'>Modifier</a> 
+                        <a href='vehicule_delete_confirm.php?id_vehicule=".$vehicule['id_vehicule']."'>Effacer</a>
+                        </tr>";
+                    }
+/************************************  Filtre agence selectionnee**********************/
+                }else if (isset($_POST['agence'])){
+                    foreach($resultat2 as $vehicule){
+                        if($_POST['agence']==$vehicule['fk_agence']){
+                            echo "<tr>
+                            <td>" .$vehicule['id_vehicule']. "</td>"
+                            ."<td>" .$vehicule['titreAgence']. "</td>"
+                            ."<td>" .$vehicule['titre']. "</td>"
+                            . "<td>" .$vehicule['marque']. "</td>"
+                            . "<td>" .$vehicule['modele']. "</td>"
+                            . "<td>" .$vehicule['description']. "</td>"
+                            . "<td><img width='50vw' src='assets/img/" .$vehicule['photo']. "'</td>"
+                            . "<td>" .$vehicule['prix_journalier']. "</td>"
+                            ."<td><a href='vehicule_show.php?id_vehicule=".$vehicule['id_vehicule']."'>Visualiser</a> 
+                            <a href='vehicule_update_form.php?id_vehicule=".$vehicule['id_vehicule']."'>Modifier</a> 
+                            <a href='vehicule_delete_confirm.php?id_vehicule=".$vehicule['id_vehicule']."'>Effacer</a>
+                            </tr>";
+                        }
                     }
                 }
-            }
         ?>
 
 </tbody>
 </table>
 <!-- ----------Formulaire d'ajout--------------->
+<div id="container">
 <form action="vehicule_ajout.php" method="POST">
 <input type="number" name="fk_agence" class="display-none" value="<?php echo $agence['id_agence']?>">
             <div class="titre">
@@ -121,10 +127,11 @@ $resultat=$requete->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <div class="photo">
                 <label for="photo">Photo</label>
-                <input type="file" name="photo" accept="img/png, .jpg">
+                <input type="file" name="photo">
             </div>
             <input type="submit" value="Enregistrer">
         </form>
+        </div>
     </main>
     <style>
         .display-none{
@@ -132,8 +139,7 @@ $resultat=$requete->fetchAll(PDO::FETCH_ASSOC);
         }
         </style>
         <footer>
-            ceci est le footer
-            </footer>
+        </footer>
         </body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <script src="assets/js/select.js"></script>

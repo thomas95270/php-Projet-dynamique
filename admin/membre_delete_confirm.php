@@ -1,10 +1,10 @@
 <?php
 session_start();
-include('../../inc/head.php');
+include('assets/inc/head.php');
 ?>
     <title>Membre deleting</title>
 <?php
-include('../../inc/header.php');
+include('assets/inc/header.php');
 ?>
 
 <?php
@@ -46,8 +46,8 @@ $resultat=$requete->fetch(PDO::FETCH_ASSOC);
 <div id="confirmation">
 <p>Etes-vous sûr de vouloir effacer cette membre ? </p>    
     <p><a href="membre_delete.php?id_membre=<?php echo $id_membre ?>">oui</a></p>
-    <p><a href="../../../membres.php">non</a></p>
+    <p><a href="membres.php">non</a></p>
 </div>
 <?php
-include('../../inc/footer.php');
+include('assets/inc/footer.php');
 ?>

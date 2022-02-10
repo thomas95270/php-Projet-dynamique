@@ -14,7 +14,6 @@ include('assets/inc/header.php');
     $requete->bindValue(':id_vehicule', $_GET['id_vehicule'], PDO::PARAM_INT);
     $requete->execute();
     $resultat=$requete->fetch(PDO::FETCH_ASSOC);
-    var_dump($resultat);
     ?>
     <h2>Modifier le vehicule</h2>
     <form action="vehicule_update.php" method="post">

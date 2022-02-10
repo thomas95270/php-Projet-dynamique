@@ -27,5 +27,5 @@ $requete->bindValue(':date_enregistrement', $date_enregistrement, PDO::PARAM_STR
 $requete->execute();
 
 
-header('Location: ../../../membres.php');
+header('Location: membres.php');
 ?>

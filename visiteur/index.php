@@ -5,22 +5,16 @@ include('assets/inc/head.php');
   <title>Veveille - CarShop</title>
 
 <?php
-include('assets/inc/header.php');
+include('assets/inc/header1.php');
 ?>
 <main>
-  <?php
-  // echo '<pre>';
-  // var_dump($_POST);
-  // echo '</pre>';
-  // echo '<pre>';
-  // var_dump($_SESSION);
-  // echo '</pre>';
-  ?>
 <article>
+  <!-- --------------------------------------------FILTRE tri prix----------------------------- -->
+
   <!-- --------------------------------------------APPEL BDD----------------------------- -->
   <?php
   $bdd = new PDO('mysql:host=localhost;dbname=veville', 'root','');
-  /* ****************************** Affichage des vehicules prix croissant*********************** */
+  /* ****************************** REQUETE Affichage des vehicules prix croissant*********************** */
   if(isset($_POST['filtre_prix'])){
     if($_POST['filtre_prix'] == 1){
       $sql = "SELECT vehicule.id_vehicule, vehicule.fk_agence, vehicule.photo, vehicule.titre, vehicule.description, vehicule.prix_journalier, agence.titre AS titreAgence
@@ -28,7 +22,7 @@ include('assets/inc/header.php');
         LEFT JOIN agence
         ON agence.id_agence = vehicule.fk_agence
         ORDER BY prix_journalier ASC";
-    /* ****************************** Affichage des vehicules prix décroissant*********************** */
+    /* ****************************** REQUETE Affichage des vehicules prix décroissant*********************** */
   } else if($_POST['filtre_prix'] == 2){
     $sql = "SELECT vehicule.id_vehicule, vehicule.fk_agence, vehicule.photo, vehicule.titre, vehicule.description, vehicule.prix_journalier, agence.titre AS titreAgence
     FROM vehicule
@@ -36,7 +30,7 @@ include('assets/inc/header.php');
     ON agence.id_agence = vehicule.fk_agence
     ORDER BY prix_journalier DESC
     ";
-    /* ****************************** Affichage des vehicules retirer filtres*********************** */
+    /* ****************************** REQUETE Affichage des vehicules retirer filtres*********************** */
   }else{
     $sql = "SELECT vehicule.id_vehicule, vehicule.fk_agence, vehicule.photo, vehicule.titre, vehicule.description, vehicule.prix_journalier, agence.titre AS titreAgence
     FROM vehicule
@@ -46,19 +40,18 @@ include('assets/inc/header.php');
     $requete = $bdd->prepare($sql);
     $requete->execute();
     $resultat = $requete->fetchALL(PDO::FETCH_ASSOC);
-    /* ****************************** Affichage des vehicules au chargement de la page*********************** */
-}else{
-  $sql = "SELECT vehicule.id_vehicule, vehicule.fk_agence, vehicule.photo, vehicule.titre, vehicule.description, vehicule.prix_journalier, agence.titre AS titreAgence
+    /* ****************************** REQUETE Affichage des vehicules au chargement de la page*********************** */
+  }else{
+    $sql = "SELECT vehicule.id_vehicule, vehicule.fk_agence, vehicule.photo, vehicule.titre, vehicule.description, vehicule.prix_journalier, agence.titre AS titreAgence
         FROM vehicule
         LEFT JOIN agence
         ON agence.id_agence = vehicule.fk_agence";
 $requete = $bdd->prepare($sql);
 $requete->execute();
 $resultat = $requete->fetchALL(PDO::FETCH_ASSOC);
-  }
-  ?>
+}
+?>
 
-<!-- -------------------------------MENU SELECT FILTRE------------------------------------------ -->
 <div class="filtre_prix">
   <form action="index.php" method="POST">
     <select name="filtre_prix" id="piltre_prix" onChange="submit()">
@@ -70,7 +63,8 @@ $resultat = $requete->fetchALL(PDO::FETCH_ASSOC);
   </form>
 </div>
 
-  <!-- ---------------------------LISTE DE VOITURES----------------------------------- -->
+<h3><?php if(isset($_SESSION['agence'])){echo $_SESSION['agence'];}?> </h3>
+  <!-- ---------------------------LISTE DE VOITURES AVEC FILTRE AGENCE S'il y a----------------------------------- -->
   <?php
       foreach($resultat as $vehicule){
         if(isset($_SESSION['id_agence']) && $_SESSION['agence']==$vehicule['titreAgence']){
@@ -103,7 +97,8 @@ $resultat = $requete->fetchALL(PDO::FETCH_ASSOC);
           <input type="text" name="titre" value="'.$vehicule['titre'].'" class="display-none">
           <input type="text" name="titreAgence" value="'.$vehicule['titreAgence'].'" class="display-none">
           </form>';
-    } else if ((isset($_SESSION['id_agence'])) && $_SESSION['id_agence']==0){
+/*     ********************  LISTE DE VOITURES AVEC FILTRE AGENCE S'il est enlevé ******************* */ 
+   } else if ((isset($_SESSION['id_agence'])) && $_SESSION['id_agence']==0){
     echo  '
       <form action="commande_form.php" method="post">
         <div class="container mt-5">

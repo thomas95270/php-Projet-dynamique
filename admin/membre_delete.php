@@ -6,5 +6,5 @@ $requete = $bdd->prepare($sql);
 $requete->bindValue(':id_membre', $id_membre, PDO::PARAM_INT);
 $requete->execute();
 
-header('Location: ../../../membres.php');
+header('Location: membres.php');
 ?>

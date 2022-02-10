@@ -11,7 +11,34 @@ header {
 	display: flex;
 	flex-direction: row-reverse;
 }
-
+#container {
+	width: 50%;
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+#container > div {
+	margin-bottom: 20px;
+}
 .display-none {
 	display: none;
 }
+
+/* *******************************TABLEAU************************************ */
+table {
+	text-align: center;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+thead {
+	background-color: black;
+	color: ivory;
+}
+td {
+	border: 1px solid black;
+	padding: 5px;
+}
+/* body {
+	background-color: aqua;
+} */

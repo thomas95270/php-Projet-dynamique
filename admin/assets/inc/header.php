@@ -3,7 +3,7 @@
     <header>
       <nav class="navbar navbar-light bg-light fixed-top">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">DashBoard</a>
+          <a class="navbar-brand" href="dashboard.php">DashBoard</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -24,7 +24,7 @@
                   <a class="nav-link active" aria-current="page" href="vehicules.php">Gérer les véhicules</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="vehicules.php">Gérer les agences</a>
+                  <a class="nav-link active" aria-current="page" href="agences.php">Gérer les agences</a>
                 </li>
                 </ul>
             </div>

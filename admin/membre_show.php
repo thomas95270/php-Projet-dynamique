@@ -1,11 +1,11 @@
 <?php
 session_start();
-include('../../../assets/inc/head.php');
+include('assets/inc/head.php');
 ?>
     <title>Vue membre</title>
     
     <?php
-include('../../../assets/inc/header.php');
+include('assets/inc/header.php');
 ?>
 
 <?php
@@ -50,6 +50,6 @@ if ($resultat['statut']==1){
         </tr>
     </tbody>
 </table>
-<p><a href="../../../membres.php">Retour</a></p>
+<p><a href="membres.php">Retour</a></p>
 </body>
 </html>

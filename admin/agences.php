@@ -8,6 +8,7 @@ include('assets/inc/header.php');
 ?>
 <!------------MAIN--------------->
 <main>
+    <h1>Gestion des agences</h1>
     <?php
 //**************Connexion + RECUPeRATION DES DONNEES***************/
 $bdd = new PDO('mysql:host=localhost;dbname=veville', 'root', '');
@@ -43,7 +44,7 @@ $resultat=$requete->fetchAll(PDO::FETCH_ASSOC);
                         . "<td>" .$agence['ville']. "</td>"
                         . "<td>" .$agence['cp']. "</td>"
                         . "<td>" .$agence['description']. "</td>"
-                        . "<td><img src=" .$agence['photo']. "></td>"
+                        ."<td><img width='50vw' src='assets/img/". $agence['photo']."'></td>"
                         ."<td><a href='agence_show.php?id_agence=".$agence['id_agence']."'>Visualiser</a> 
                         <a href='agence_update_form.php?id_agence=".$agence['id_agence']."'>Modifier</a> 
                         <a href='agence_delete_confirm.php?id_agence=".$agence['id_agence']."'>Effacer</a>
@@ -54,6 +55,7 @@ $resultat=$requete->fetchAll(PDO::FETCH_ASSOC);
         </table>
         
 <!------------FORMULAIRE D'AJOUT DES AGENCES --------------->
+<div id="container">
         <form action="agence_ajout.php" method="POST">
             <div class="titre">
                 <label for="titre">Titre</label>
@@ -81,8 +83,11 @@ $resultat=$requete->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <input type="submit" value="Enregistrer">
         </form>
+        </div>
+        <a href="dashboard.php">Retour</a>
     </main>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="assets/js/select.js"></script>
     <?php
     include('assets/inc/footer.php');
     ?>

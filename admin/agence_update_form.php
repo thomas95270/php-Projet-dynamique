@@ -48,6 +48,8 @@ include('assets/inc/header.php');
             <input type="file" name="photo" id="photo" value="<?php echo $resultat['photo']?>">
         </div>
         <input type="submit" value="Enregistrer">
+</form>
+        <a href="agences.php">Retour</a>
     </main>
 
     <?php
