@@ -10,7 +10,27 @@ include('assets/inc/header.php');
 ?>
 <main>
 <h3>Réserver votre véhicule</h3>
+<?php
+if ($_SESSION['statut']!=0){
+  header('Location: redirection.php');
+}else if ($_SESSION['id_membre']==false
+  || $_SESSION['nom']==false
+  || $_SESSION['prenom']==false
+  || $_SESSION['email']==false
+  || $_POST['id_vehicule']==false
+  || $_POST['titre']==false
+  || $_POST['prix_journalier']==false
+  || $_SESSION['id_agence']==false
+  || $_SESSION['agence']==false
+  || $_SESSION['date_depart']==false
+  || $_SESSION['date_fin']==false
+  || $_SESSION['heure_depart']==false
+  || $_SESSION['heure_fin']==false) {
+   header('Location: redirection1.php');
+  }
+ 
 
+?>
 <div class="identite">
 <p>id_membre : <?php echo $_SESSION['id_membre']; ?></p>
 <p>nom : <?php echo $_SESSION['nom']; ?></p>
@@ -65,18 +85,6 @@ echo '<form action="assets/core/create_commande.php" method="post">
   <input type="submit" value="Validez votre choix">
 </form>';
 ?>
-<a href="index.php">Retour</a>
-<?php
-echo '<pre>';
-var_dump($id_membre);
-var_dump($id_vehicule);
-var_dump($id_agence);
-var_dump($depart);
-var_dump($fin);
-var_dump($prix_total);
-var_dump($date);
-echo '</pre>';
-?>
 </main>
 
 <!------------------------------footer-------------------------------------->
@@ -84,5 +92,5 @@ echo '</pre>';
 include('assets/inc/footer.php');
 ?>
 </body>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </html>

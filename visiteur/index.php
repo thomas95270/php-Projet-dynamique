@@ -54,7 +54,7 @@ $resultat = $requete->fetchALL(PDO::FETCH_ASSOC);
 
 <div class="filtre_prix">
   <form action="index.php" method="POST">
-    <select name="filtre_prix" id="piltre_prix" onChange="submit()">
+    <select name="filtre_prix" id="filtre_prix" onChange="submit()">
       <option value="">Trier par : </option>
       <option value="1">Prix croissant</option>
       <option value="2">Prix décroissant</option>
@@ -128,8 +128,38 @@ $resultat = $requete->fetchALL(PDO::FETCH_ASSOC);
         <input type="text" name="titre" value="'.$vehicule['titre'].'" class="display-none">
         <input type="text" name="titreAgence" value="'.$vehicule['titreAgence'].'" class="display-none">
         </form>';
-    }
+    } else {
+      echo  '
+        <form action="commande_form.php" method="post">
+          <div class="container mt-5">
+            <div class="col-12">
+              <div class="list-car">
+                <div class="card mb-5" style="max-width: 950px;">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                    <img src="assets/img/'.$vehicule['photo'].'" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">'.$vehicule['titre'].'</h5>
+                        <p class="card-text">'.$vehicule['description'].'</p>
+                        <p class="card-text">' .$vehicule['prix_journalier'].'€ - '.$vehicule['titreAgence'].'</p>
+                        <button type="submit" class="btn btn-success" id="btn_reserver">Reservez et Payer</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <input type="number" name="id_vehicule" value="'.$vehicule['id_vehicule'].'" class="display-none">
+          <input type="number" name="prix_journalier" value="'.$vehicule['prix_journalier'].'" class="display-none">
+          <input type="number" name="fk_agence" value="'.$vehicule['fk_agence'].'" class="display-none">
+          <input type="text" name="titre" value="'.$vehicule['titre'].'" class="display-none">
+          <input type="text" name="titreAgence" value="'.$vehicule['titreAgence'].'" class="display-none">
+          </form>';
   }
+}
   ?>
 
 </article>

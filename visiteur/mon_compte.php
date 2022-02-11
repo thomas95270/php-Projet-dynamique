@@ -20,6 +20,7 @@ include('assets/inc/header.php');
 <p>Statut : membre.</p>
 
 <?php
+$id_membre = $_SESSION['id_membre'];
 $bdd = new PDO('mysql:host=localhost;dbname=veville', 'root','');
 $sql = "SELECT commande.id_commande, commande.fk_membre, commande.fk_agence, commande.fk_vehicule,
         commande.date_heure_depart, commande.date_heure_fin, commande.prix_total, commande.date_enregistrement,
@@ -29,7 +30,7 @@ $sql = "SELECT commande.id_commande, commande.fk_membre, commande.fk_agence, com
         LEFT JOIN agence
         ON vehicule.fk_agence = agence.id_agence
         LEFT JOIN membre
-        ON commande.fk_membre=membre.id_membre;";
+        ON commande.fk_membre = membre.id_membre;";
 $requete = $bdd->prepare($sql);
 $requete->execute();
 $resultat = $requete->fetchALL(PDO::FETCH_ASSOC);
@@ -48,6 +49,7 @@ $resultat = $requete->fetchALL(PDO::FETCH_ASSOC);
     </thead>
     <tbody>
         <?php foreach($resultat as $com){
+          if($com['fk_membre']==$id_membre){
             echo "<tr>
             <td>" . $com['id_commande'] . "</td>
             <td>" . $com['fk_membre'] . " - ". $_SESSION['prenom'] . " " . $_SESSION['nom'] . " - " . $_SESSION['email'] . "</td>
@@ -58,11 +60,13 @@ $resultat = $requete->fetchALL(PDO::FETCH_ASSOC);
             <td>" . $com['prix_total'] . "€</td>
             <td>" . $com['date_enregistrement'] . "</td>
             </tr>";
+          }
         }
         ?>
     </tbody>
 </table>
 </section>
+<a href="index.php">Retour</a>
 </main>
 
 <!------------------------------footer-------------------------------------->

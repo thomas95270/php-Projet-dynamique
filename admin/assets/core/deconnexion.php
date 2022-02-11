@@ -1,5 +1,7 @@
 <?php
 session_start();
+$_SESSION = array();
+$_POST = array();
 $_SESSION['statut']=-1;
-header('Location: ../../../visiteur/index.php');
+header('Location: ../../index.php');
 ?>

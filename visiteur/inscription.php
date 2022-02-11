@@ -1,6 +1,13 @@
 <?php
-var_dump($_POST);
-
+$mdp=$_POST['password'];
+$options = ['cost' => 12];
+$mdp = password_hash(trim($_POST['password']), PASSWORD_DEFAULT, $options);
+$nom =  $_POST['nom'];
+$nom= addslashes(mb_convert_case(strtolower($_POST['nom']), MB_CASE_TITLE, 'UTF-8'));
+$prenom =  $_POST['prenom'];
+$prenom= addslashes(mb_convert_case(strtolower($_POST['prenom']), MB_CASE_TITLE, 'UTF-8'));
+$email=$_POST['email'];
+$email= strtolower($_POST['email']);
 $date = date('Y-m-d');
 /*Connexion bdd*/
 $bdd = new PDO('mysql:host=localhost;dbname=veville', 'root','');
@@ -11,10 +18,10 @@ $sql = "INSERT INTO membre(pseudo, mdp, nom, prenom, email, civilite, statut, da
 $requete = $bdd->prepare($sql);
 /*relier les valeurs+ securisation*/
 $requete->bindValue(':pseudo', $_POST['pseudo'], PDO::PARAM_STR);
-$requete->bindValue(':mdp', $_POST['password'], PDO::PARAM_STR);
-$requete->bindValue(':nom', $_POST['nom'], PDO::PARAM_STR);
-$requete->bindValue(':prenom', $_POST['prenom'], PDO::PARAM_STR);
-$requete->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
+$requete->bindValue(':mdp', $mdp, PDO::PARAM_STR);
+$requete->bindValue(':nom', $nom, PDO::PARAM_STR);
+$requete->bindValue(':prenom', $prenom, PDO::PARAM_STR);
+$requete->bindValue(':email', $email, PDO::PARAM_STR);
 $requete->bindValue(':civilite', $_POST['civilite'], PDO::PARAM_STR);
 $requete->bindValue(':statut', $_POST['statut'], PDO::PARAM_STR);
 $requete->bindValue(':date_enregistrement', $date, PDO::PARAM_STR);
@@ -22,5 +29,5 @@ $requete->bindValue(':date_enregistrement', $date, PDO::PARAM_STR);
 $requete->execute();
 
 /*redirection vers la page*/
-header('Location: ../membre/connecte.php');
+header('Location: index.php');
 ?>

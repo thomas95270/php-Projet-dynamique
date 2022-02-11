@@ -13,11 +13,13 @@
                 <div class="offcanvas-body">
                   <ul class="navbar-nav justify-content-end flex-grow-1 pe-1">
                     <?php if($_SESSION['statut'] ==0){ 
+                      echo '<li class="nav-item"><h3>' . $_SESSION["nom"] . ' ' . $_SESSION["prenom"] . '</h3></li>';
+                      echo '<li class="nav-item"><h5>' . $_SESSION["email"] . '</h5></li>';
                       echo '<li class="nav-item">
                       <a class="nav-link active" aria-current="page" href="index.php">ACCUEIL</a>
                       </li>';
                       echo '<li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="compte.php">Mon compte</a>
+                      <a class="nav-link active" aria-current="page" href="mon_compte.php">Mon compte</a>
                       </li>';
                       echo '<li class="nav-item">
                       <a class="nav-link active" aria-current="page" href="assets/core/deconnexion.php">Se déconnecter</a>
@@ -68,11 +70,11 @@
           ?>
         <select name="id_agence" id="id_agence">
           <option name="agence">Choisissez une agence</option>';
+          <option name="id_agence" value="0">Toutes les agences</option>';
           <?php
               foreach($resultat as $agence){
                 echo '<option name="agence" value="' .$agence["id_agence"] . '">'.$agence["titre"].'</option>';}
                 ?>
-          <option name="id_agence" value="0">Toutes les agences</option>';
         </select>
       </form>
     </div>
